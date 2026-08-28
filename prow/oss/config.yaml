@@ -98,13 +98,13 @@ tide:
     labels:
     - lgtm
     - approved
-    - ci-passed
     missingLabels:
     - do-not-merge
     - do-not-merge/hold
     - do-not-merge/invalid-owners-file
     - do-not-merge/work-in-progress
     - needs-rebase
+    - needs-ok-to-test
   - repos:
     - kubeflow/pipelines
     author: "dependabot[bot]"
@@ -116,6 +116,7 @@ tide:
     - do-not-merge/invalid-owners-file
     - do-not-merge/work-in-progress
     - needs-rebase
+    - needs-ok-to-test
   - orgs:
     - kubeflow
     labels:
@@ -252,12 +253,14 @@ branch-protection:
       #  - cla/google
       repos:
         pipelines:
-          # Required merge gate (kubeflow/pipelines#14111): the ci-passed
-          # commit status is published on the verified head SHA only after
-          # the CI Check poll passes, so the label can remain informational.
-          required_status_checks:
-            contexts:
-            - ci-passed
+          branches:
+            master:
+              # Required merge gate (kubeflow/pipelines#14111): the ci-passed
+              # commit status is published on the verified head SHA only after
+              # the CI Check poll passes, so the label can remain informational.
+              required_status_checks:
+                contexts:
+                - ci-passed
       exclude:
       - "^revert-" # don't protect revert branches
       - "^dependabot/" # don't protect branches created by dependabot
