@@ -108,6 +108,8 @@ tide:
   - repos:
     - kubeflow/pipelines
     author: "dependabot[bot]"
+    includedBranches:
+    - master
     # The ci-passed label is informational for this path: merge is gated by
     # the required 'ci-passed' commit status in branch protection below.
     missingLabels:
@@ -128,6 +130,7 @@ tide:
     - do-not-merge/invalid-owners-file
     - do-not-merge/work-in-progress
     - needs-rebase
+    - needs-ok-to-test
   - author: google-oss-robot
     labels: # google-oss-robot should only create autobump PR with this label
     - skip-review
