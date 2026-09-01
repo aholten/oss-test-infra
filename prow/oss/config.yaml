@@ -39,14 +39,6 @@ tide:
   merge_commit_template:
     kubeflow:
       title: "{{ .Title }} (#{{ .Number }})"
-  # Respect GitHub's BLOCKED merge state for kubeflow/pipelines (branch
-  # protection / required status checks). Tide defaults to 'permit', which
-  # merges PRs whose required statuses are missing or failing — so the
-  # ci-passed required status (kubeflow/pipelines#14111) would be declared
-  # but never enforced. 'block' makes Tide treat GitHub's BLOCKED state as
-  # blocking, closing the gap proven by kubeflow/pipelines#14238 (merged with
-  # no ci-passed status). Values: ignore | permit (default) | block; keys are
-  # '*' (global), an org, or org/repo.
   github_merge_blocks_policy:
     "kubeflow/pipelines": block
   target_urls:
