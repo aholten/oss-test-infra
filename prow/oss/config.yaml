@@ -264,6 +264,7 @@ branch-protection:
               required_status_checks:
                 contexts:
                 - ci-passed
+                strict: true
       exclude:
       - "^revert-" # don't protect revert branches
       - "^dependabot/" # don't protect branches created by dependabot
